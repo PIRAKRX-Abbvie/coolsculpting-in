@@ -1,0 +1,1037 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en-IN" data-lang="en">
+
+
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+
+    <style>
+        html, body {
+            height: auto;
+            width: 100%;
+            padding: 0px;
+            overflow-x: hidden;
+        }
+
+        body {
+            position: relative;
+            max-width: 1440px;
+            margin: 0 auto;
+            background: #fff;
+            color: #75787b;
+            font-family: AvenirNextLTW01-Medium;
+            font-size: 16px;
+            line-height: 24px;
+            -ms-overflow-style: scrollbar;
+        }
+
+        .cookie-avl .cookie-wrapper {
+            display: table;
+        }
+
+        .cookie-wrapper {
+            display: none;
+            position: fixed;
+            max-width: 1440px;
+            margin: 0 auto;
+            top: 0px;
+            width: 100%;
+            padding: 10px 40px 8px;
+            text-align: left;
+            background-color: #00a4e0;
+            z-index: 9999;
+        }
+
+        .main-header {
+            position: fixed;
+            max-width: 1440px;
+            margin: 0 auto;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        section, article {
+            width: 100%;
+            float: left;
+        }
+
+        article, aside, dialog, figure, footer, header, hgroup, nav, section {
+            display: block;
+        }
+
+            /*header {
+                height: 80px;
+            }*/
+
+            section intro-container {
+                height: 687px;
+            }
+
+            section image-map {
+                height: 688px;
+            }
+
+        .main-header .header-inner {
+            width: 20%;
+            float: left;
+        }
+
+        .main-header .nav-menu {
+            width: 80%;
+            display: block;
+            float: left;
+        }
+
+        .main-header ul.main-nav {
+            display: block;
+            width: auto;
+            /*margin-left: 30px;*/
+        }
+
+        .main-header .nav-menu ul li {
+            display: inline-block;
+            width: auto;
+            position: relative;
+            margin: 0;
+        }
+
+        .main-header ul.lan-select {
+            display: block;
+            width: auto;
+            /*margin: 15px 0px;*/
+            border-bottom: none;
+            float: right;
+            position: relative;
+            padding: 0px 20px;
+            text-align: center;
+        }
+
+
+        .main-header .nav-flexi .list-container .overlay {
+            position: absolute;
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #f4f4f4;
+            z-index: -9;
+        }
+
+        .main-header .order-2 {
+            order: 2;
+        }
+
+        .main-header .order-3 {
+            order: 3;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .intro-container .image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .main-header .nav-flexi .list-container > .list-item {
+            display: none;
+        }
+
+
+        img[loading="lazy"] {
+            display: none;
+        }
+    </style>
+
+
+    <script>
+
+        var yViewableArea = window.innerHeight;
+        var imagePosi = 0;
+        function addLinktagforImage(val) {
+            var sc = document.createElement("link");
+            sc.setAttribute("href", val);
+            sc.setAttribute("rel", "preload");
+            sc.setAttribute("as", "image");
+            document.getElementsByTagName("head")[0].appendChild(sc);
+        }
+        function InitialImageload(img) {
+
+            //const images = document.querySelectorAll('img[loading="lazy"]');
+            if (img.getAttribute('datasrc') != undefined && img.src != img.getAttribute('datasrc') && img.getAttribute('loading') != undefined && img.getAttribute('loading') == "lazy") {
+                var device = "all";
+                if (window.innerWidth > 991) {
+                    device = "desktop";
+                }
+                else if (window.innerWidth > 767) {
+                    device = "tablet";
+                }
+                else {
+                    device = "mobile";
+                }
+
+                var BreakException = {};
+
+                try {
+
+
+
+                    if (img.getAttribute('device') != null && img.getAttribute('device') == 'all' && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('desktop') && device == "desktop" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('tablet') && device == "tablet" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        // setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('mobile') && device == "mobile" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (imagePosi >= yViewableArea) {
+                        throw BreakException;
+                    }
+                    dynamicHeight(img);
+
+                } catch (e) {
+                    if (e !== BreakException) throw e;
+                }
+            }
+
+        }
+
+        function ImageLazyload() {
+
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            if (images.length > 0) {
+                var device = "all";
+                if (window.innerWidth > 991) {
+                    device = "desktop";
+                }
+                else if (window.innerWidth > 767) {
+                    device = "tablet";
+                }
+                else {
+                    device = "mobile";
+                }
+
+                var BreakException = {};
+
+                try {
+
+                    for (var i = 0; i < images.length; i++) {
+                        var img = images[i];
+                        var yImagPosition = 0;
+                        const rect = img.getBoundingClientRect();
+                        yImagPosition = (rect.top != undefined ? rect.top : window.screenTop) + (window.scrollY != undefined ? window.scrollY : window.screenY);
+                        //console.log("------------------");
+                        //console.log("SRC : "+img.getAttribute("datasrc"));
+                        //console.log("DEVICE : " + img.getAttribute("device"));
+                        //console.log("yImagPosition : " + yImagPosition);
+                        //console.log("yViewableArea : " + yViewableArea);
+
+                        if (img.getAttribute('device') != null && img.getAttribute('device') == 'all' && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('desktop') && device == "desktop" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('tablet') && device == "tablet" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('mobile') && device == "mobile" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (yImagPosition >= yViewableArea) {
+                            throw BreakException;
+                        }
+
+                        dynamicHeight(img);
+
+
+                    }
+                } catch (e) {
+                    if (e !== BreakException) throw e;
+                }
+            }
+        }
+
+        function dynamicHeight(img) {
+
+            //if (img.parentElement != undefined && img.parentElement.parentElement != undefined &&
+            //    img.parentElement.parentElement.parentElement != undefined && img.parentElement.parentElement.parentElement.parentElement != undefined &&
+            //    img.parentElement.parentElement.parentElement.parentElement.getAttribute("class") != null &&
+            //    img.parentElement.parentElement.parentElement.parentElement.getAttribute("class").startsWith('overview-container')) {
+
+            //    if (window.innerWidth > 991) {
+
+            //        var height = img.parentElement.nextElementSibling.offsetHeight > img.parentElement.offsetHeight ? img.parentElement.nextElementSibling.offsetHeight : img.parentElement.offsetHeight;
+            //        img.parentElement.setAttribute('style','height:'+height+'px;')
+            //        img.parentElement.nextElementSibling.setAttribute('style','height:'+height+'px;')
+            //        img.setAttribute('style', 'height:'+height+'px;')
+            //    }
+            //    else {
+            //        img.parentElement.setAttribute('style', img.parentElement.getAttribute('style') + 'height:auto;')
+            //        img.parentElement.nextElementSibling.setAttribute('style', img.parentElement.nextElementSibling.getAttribute('style') + 'height:auto;')
+            //        img.setAttribute('style', 'height:auto;')
+            //    }
+
+            //}
+        }
+
+        //window.addEventListener('DOMContentLoaded', function () {
+        //    window.scrollBy(0, 1);
+        //});
+        function loadListeners() {
+
+            window.addEventListener('resize', function () {
+                ImageLazyload();
+            });
+
+            window.addEventListener('scroll', function () {
+                yViewableArea = window.innerHeight + (window.scrollY != undefined ? window.scrollY : window.screenY);
+                ImageLazyload();
+                //setHeaderHight();
+            });
+
+            window.addEventListener('load', function () {
+                ImageLazyload();
+            });
+        }
+
+        loadListeners();
+        //$(document).ready(function () {
+        //    alert('test');
+        //    ImageLazyload();
+        //})
+
+
+    </script>
+
+    <link rel="preload" href="../Images/blank-image2125.png?la=en" as="image" />
+
+
+        <!--Fonts for other then Australia-->
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/d12edc21-ced2-4219-94d9-f1987474ceda.css?display=swap" />
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/53fb3da4-bd03-40d5-9010-1fae680aed4b.css?display=swap" />
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/64a0ca88-fff0-48dc-8e2e-9b11887c8207.css?display=swap" />
+                    
+                <link rel="stylesheet" href="../Styles/Coolsculpting/FontReferenceStatic.css" />
+<link href="/../-/media/allergan-themes/theme/common/bootstrapmin.css" rel="stylesheet" type="text/css" /><link href="/../-/media/allergan-themes/theme/coolsculpting/custom/jquerybxslidermin.css" rel="stylesheet" type="text/css" /><link href="/../-/media/allergan-themes/theme/coolsculpting/bundles/minify/MinifiedFile090621084420.css" rel="stylesheet" type="text/css" /><script defer type="text/javascript" src="/../-/media/allergan-themes/script/common/jquery-214min.js" ></script>            <meta name="description" content="Over the years, CoolSculpting&#174; has carved a name for itself. It is one of the leading non-invasive procedures all over the world1. It is also the only fat freezing technology to have the coveted US FDA clearance8. Naturally, the brand CoolSculpting&#174; has gained repute and with it a lot of imitators and fakes.">
+            <title>CoolSculpting VS Fakes | CoolSculpting® India</title>
+        <link rel="dns-prefetch" href="https://www.coolsculptingin.com/">
+        <link rel="preconnect" href="https://www.coolsculptingin.com/">
+        <link rel="canonical" href="https://www.coolsculptingin.com/blogs/coolsculpting-vs-fakes">
+
+                <link rel="icon" href="/../-/media/project/coolsculpting/page/favicon.ico" />
+        <script>
+        (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var
+            f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src
+                =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KSQJDHS');</script>
+
+
+
+    <script>
+        var siteDefaultLanguage = 'en';
+        
+
+ var supportLowercaseURL = false;
+
+        var removeDefaultLanguage =1;
+        if (removeDefaultLanguage == 1) {
+            removeDefaultLanguage = true;
+        }
+        else {
+            removeDefaultLanguage = false;
+        }
+    </script>
+
+
+        <!--Fonts for other then Australia-->
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/d12edc21-ced2-4219-94d9-f1987474ceda.css?display=swap" />
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/53fb3da4-bd03-40d5-9010-1fae680aed4b.css?display=swap" />
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/64a0ca88-fff0-48dc-8e2e-9b11887c8207.css?display=swap" />
+                    
+                <script defer rel="preload" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALkGGfcTisYYtZuo-kd-vY2mQ3oDUuWEQ&amp;channel=CoolSculpting-IN&amp;libraries=places"></script>
+<script defer type="text/javascript" src="/../-/media/allergan-themes/script/common/angularmin.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/common/angular-routemin.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/common/angular-cookiesmin.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/common/angular-filter.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/coolsculpting/bundles/minify/MinifiedFile151121152323.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/common/bootstrapmin.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/coolsculpting/custom/modalVideomin.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/coolsculpting/custom/mapsvgmin.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/coolsculpting/custom/jquerynicescrollmin.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/coolsculpting/custom/jquerybxslidermin.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/coolsculpting/custom/player.js" ></script><script defer type="text/javascript" src="/../-/media/allergan-themes/script/common/AgnProjectCoolsculptingjquerygeocompletemin.js" ></script>    </head>
+<body class="en IndiaCoolsculpting"  pagename="CoolSculpting VS Fakes" data-imglazyload="1" enablelanguagecodeupdate="True">
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSQJDHS"
+                    height="0" width="0"
+                    style="display:none;visibility:hidden"></iframe>
+        </noscript>
+<script type="text/javascript">
+  window.dataLayer.push({
+                event: "cookieConsentPopupAccepted",
+                cookieConsented: 1
+            }); 
+ 
+</script>
+
+                    <div id="settings-site" data-isEEditor="0">
+                    <div id="settings-geolocation" data-geolocationapi=https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAltuYszRmFVsQ6SIQv6O7UYvITwc57dd0>
+                    </div>
+                    <div id="settings-countrycode" data-country=IN>
+                    </div>
+                    <div id="settings-countrycodefilter" data-countries="IN">
+                    </div>
+                    <div id="settings-countryname" data-countryname="India">
+                    </div>
+                    <div id="settings-unbranded" data-unbranded="False">
+                    </div>
+                    <div id="settings-isgdpr" data-gdpr="False">
+                    </div>
+                    <div id="settings-isdistanceinkm" data-distanceinkm="False">
+                    </div>
+                    <div id="settings-isradius" data-radius="">
+                    </div>
+                    
+                    <div id="settings-SFGlobalcliniclocator" data-ICLApproach="1">
+                    </div>
+                    <div id="settings-ICLDistance" data-icldistancevalue="">
+                    </div>
+                    <div id="settings-ICLCountryCode" data-ICLCountryCodevalue="IN">
+                    </div>
+                    <div id="settings-ICLClustercountrycode" data-Clustercountrycodevalue="">
+                    </div>
+                    <div id="settings-ImageLazyload" data-ImageLazyload="1">
+                    </div>
+
+                </div>
+
+    <!--  Start Sitecore Jquery Issues Conflict -->
+    <script>
+        if (typeof jQuery != 'undefined' && jQuery.fn.jquery == "1.5.1") {
+            jQuery.noConflict(true);
+        }
+    </script>
+    <!--  End Sitecore Jquery Issues Conflict -->
+    <div ng-app="allerganApp" class="ng-coolsculpting">
+        <!--Start: Cookie Policy Section-->
+        <section cookie class="ng-scope">
+                        
+            
+            
+                <div class="modal fade" id="csmodelpopup">
+        <div class="modal-dialog" role="dialog" tabindex="">
+            <div class="modal-content" role="document">
+
+                <div class="main container" style="height: auto;">
+                    <div class="raw">
+                        <div class="main-container" style="margin: auto; top: auto;">
+                            <div class="w-cover hcp-popup">
+                                <img src="/../-/media/project/coolsculpting/page/blogs/CS-Fakesmobile.jpg?h=420&amp;w=657&amp;la=en&amp;hash=1A1D1585F045D795141061D4491C3BAAE867E8C6" alt="" />
+                                <h1 class="m40">
+                                </h1>
+                                <div class="bottom-text">
+<p>Over the years, CoolSculpting® has carved a name for itself. It is one of the leading non-invasive procedures all over the world<sup>1</sup>. It is also the only fat freezing technology to have the coveted US FDA clearance<sup>8</sup>. Naturally, the brand CoolSculpting® has gained repute and with it a lot of imitators and fakes. Competing brands and cheap knock offs have made in-roads in the market by using the popularity and the demand for quick, painless and non-surgical fat reduction solutions.</p>
+<p>Apart from the high probability that the ‘treatments’ using counterfeit machines will yield no result and will be a waste of your money, there is considerable danger and risk to your health.</p>
+<p>CoolSculpting® has taken many precautions to ensure that your safety and comfort is paramount during your treatment.</p>
+<p>Patented technology such as Freeze Detect<sup>®2</sup> is in-built with CoolSculpting® machines and continuously monitors the temperature. CoolSculpting® is the only FDA approved machine for Cryolipolysis<sup>3-6</sup>, a technique for destroying fat cells by freezing them and removing them from the body normally and automatically. It is a technique that removes up to 27%<sup>7</sup> of the sub-cutaneous fat from the treatment area.</p>
+<p>The next time you walk in to a cosmetician’s clinic for CoolSculpting® insist on seeing the machine and the logo to be sure that you are getting the best and only the best.</p>
+<p><strong>References:</strong></p>
+<p>1. ASDS. Consumer survey on cosmetic dermatologic procedures 2018. <a href="https://www.asds.net/medical-professionals/practice-resources/asds-survey-on-dermatologic-procedures" target="_blank">https://www.asds.net/medical-professionals/practice-resources/asds-survey-on-dermatologic-procedures</a>. Accessed August, 2019. In 2018, out of 623,000 Body sculpting procedures, there were 287,000 fat freezing / Cryolipolysis procedures.<br />
+2. Allergan.CoolSculpting® system user manual. BRZ-101-TUM-EN4-H.2016<br />
+3. Allergan. Patent – Control unit. US D568,258 S.2008<br />
+4. Allergan. Patent – Monitoring the cooling of sub-cutaneous lipid rich cells, such as the cooling of the adipose tissue. US 8,285,390 B2. 2012<br />
+5. Allergan. Patent – System for treating lipid-rich regions. US 8,523,297 B2. 2013<br />
+6. Allergan. Patent – Device, system and method of removing heat from subcutaneous lipid rich cells. US 8,702,774,B2. 2014<br />
+7. Sasaki GH, et al. Aesthet Surg J 2014;34:420-31<br />
+8. Food and Drug Administration. K080521. Zeltiq™ Dermal Cooling Device. September 2010.
+</p>
+<div>&nbsp;</div>                                </div>
+                                    <a class="btn-lnk m40" id=landinghcp-btn>
+                                        <span class="cursor-md">
+                                        </span>
+                                        <img src="/../-/media/project/coolsculpting/navigation/circle-arrow-_lg.png?h=48&amp;w=48&amp;la=en&amp;hash=322A8C31B50E03522BA86C8E35B6E08C8EAD46B9" alt="see all clinics" />
+                                    </a>
+
+<a href="/../blogs" Class="btn-lnk m40" id="landinghcpno-btn" >                                    <span class="cursor-md">
+                                        CoolSculpting VS Fakes
+                                    </span>
+<img src="/../-/media/project/coolsculpting/navigation/circle-arrow-_lg.png?h=48&amp;w=48&amp;la=en&amp;hash=322A8C31B50E03522BA86C8E35B6E08C8EAD46B9" alt="see all clinics" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+        </section>
+        <!--End: Cookie Policy Section-->
+        <!--Start: Header Section-->
+
+        <section header class="ng-scope">
+            <header class="main-header clearfix " role="banner">
+                <div class="header-inner">
+                        <div class="header exp-editor">
+<a href="../" class="logo ft-left" ><img src="../Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="desktop" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-xs hidden-sm" /><img src="../Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="tablet" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-xs hidden-md hidden-lg" /><img src="../Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="mobile" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-sm hidden-md hidden-lg" /></a>        
+
+
+        <a href="javascript:void(0);" aria-expanded="false" role="button" aria-label="toggle navigation" data-ng-class="{active: active}" data-ng-click="active =!active;menuToggled();" class="btn menu-btn ft-right">
+                <span class="sr-only">Navigation menu</span>
+            <div data-ng-hide="active" class="burger-menu ft-left">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+<img src="../Images/blank-image2125.png?la=en" dataheight="24" src="#" Class="close-toggle" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/logo/close.png" data-ng-show="active" alt="CoolSculpting-close" />
+
+        </a>
+    </div>
+
+                </div>
+                <div class="nav-menu" role="navigation">
+                        <ul class="ft-left main-nav order-2 nav-flexi " role="menubar">
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="#" Class="nav-title" aria-expanded="false" aria-haspopup="true" ></a>                                
+<a href="#" ng-click="navigateNxt($event);" Class="list-item first-item-menu" ></a>                                                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="javascript:void(0);" Class="nav-title" aria-expanded="false" aria-haspopup="true" >About CoolSculpting®<img src="/../-/media/project/coolsculpting/navigation/icon-drop.png?h=24&amp;w=24&amp;la=en&amp;hash=4E087C3BCE2F27D6593B70EEDE5EB75D6014D643" alt="CoolSculpting-icon-drop" /></a>                                
+<a href="javascript:void(0);" ng-click="navigateNxt($event);" Class="list-item" >About CoolSculpting®</a>                                                                    <ul class="sub-menu dropdown-content">
+                                                <li>
+
+<a href="/../what-is-coolsculpting" ng-click="navigateNxt($event);" Class="list-item" >                                                 <!--inner Navigation Menu DisplayName-->
+What is CoolSculpting®?</a>
+                                        </li>
+                                                <li>
+
+<a href="/../what-to-expect" ng-click="navigateNxt($event);" Class="list-item" >                                                 <!--inner Navigation Menu DisplayName-->
+What to expect</a>
+                                        </li>
+                                                <li>
+
+<a href="/../how-it-works" ng-click="navigateNxt($event);" Class="list-item" >                                                 <!--inner Navigation Menu DisplayName-->
+How it works</a>
+                                        </li>
+                                                <li>
+
+<a href="/../faq" ng-click="navigateNxt($event);" Class="list-item" >                                                 <!--inner Navigation Menu DisplayName-->
+FAQs</a>
+                                        </li>
+                                </ul>
+                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="javascript:void(0);" Class="nav-title" aria-expanded="false" aria-haspopup="true" >Results<img src="/../-/media/project/coolsculpting/navigation/icon-drop.png?h=24&amp;w=24&amp;la=en&amp;hash=4E087C3BCE2F27D6593B70EEDE5EB75D6014D643" alt="CoolSculpting-icon-drop" /></a>                                
+<a href="javascript:void(0);" ng-click="navigateNxt($event);" Class="list-item" >Results</a>                                                                    <ul class="sub-menu dropdown-content">
+                                                <li>
+
+<a href="/../before-after-gallery" ng-click="navigateNxt($event);" Class="list-item" >                                                 <!--inner Navigation Menu DisplayName-->
+Before &amp; After Gallery</a>
+                                        </li>
+                                </ul>
+                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/../blogs" Class="nav-title" aria-expanded="false" aria-haspopup="true" >Blogs</a>                                
+<a href="/../blogs" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >Blogs</a>                                                            </li>
+    </ul>
+
+                    
+
+                        <ul class="cta-group order-1 " role="menubar">
+                    <li role="menuitem">
+<a href="/../find-a-clinic" onclick="dataLayer.push({'buttonLocation': 'Header','event': 'findProviderClicked'});" Class="btn cta" ><img src="../Images/blank-image2125.png?la=en" dataheight="24" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/map-pin.png" alt="CoolSculpting-map-pin" />                                    <span>
+                                        Find a clinic
+                                    </span>
+<img src="/../-/media/project/coolsculpting/navigation/icon-drop.png?h=24&amp;w=24&amp;la=en&amp;hash=4E087C3BCE2F27D6593B70EEDE5EB75D6014D643" class="icon-nav" alt="CoolSculpting-icon-drop" /></a>                    </li>
+    </ul>
+
+                </div>
+            </header>
+            <div class="sticky-header "></div>
+        </section>
+        <!--End: Header Section-->
+        <!--Layout Changes: Start-->
+        <main>
+            <section>
+    
+
+
+    <div hidden id="/settings-metaurl" data-metaurl="coolsculpting-vs-fakes">
+    </div>
+        <div hidden id="settings-metatitle" data-metatitle="CoolSculpting VS Fakes">
+        </div>
+        <div hidden id="settings-metadescription" data-metadescription="&lt;p&gt;Over the years, CoolSculpting&#174; has carved a name for itself. It is one of the leading non-invasive procedures all over the world&lt;sup&gt;1&lt;/sup&gt;. It is also the only fat freezing technology to have the coveted US FDA clearance&lt;sup&gt;8&lt;/sup&gt;. Naturally, the brand CoolSculpting&#174; has gained repute and with it a lot of imitators and fakes. Competing brands and cheap knock offs have made in-roads in the market by using the popularity and the demand for quick, painless and non-surgical fat reduction solutions.&lt;/p&gt;
+&lt;p&gt;Apart from the high probability that the ‘treatments’ using counterfeit machines will yield no result and will be a waste of your money, there is considerable danger and risk to your health.&lt;/p&gt;
+&lt;p&gt;CoolSculpting&#174; has taken many precautions to ensure that your safety and comfort is paramount during your treatment.&lt;/p&gt;
+&lt;p&gt;Patented technology such as Freeze Detect&lt;sup&gt;&#174;2&lt;/sup&gt; is in-built with CoolSculpting&#174; machines and continuously monitors the temperature. CoolSculpting&#174; is the only FDA approved machine for Cryolipolysis&lt;sup&gt;3-6&lt;/sup&gt;, a technique for destroying fat cells by freezing them and removing them from the body normally and automatically. It is a technique that removes up to 27%&lt;sup&gt;7&lt;/sup&gt; of the sub-cutaneous fat from the treatment area.&lt;/p&gt;
+&lt;p&gt;The next time you walk in to a cosmetician’s clinic for CoolSculpting&#174; insist on seeing the machine and the logo to be sure that you are getting the best and only the best.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1. ASDS. Consumer survey on cosmetic dermatologic procedures 2018. &lt;a href=_.html https://www.asds.net/medical-professionals/practice-resources/asds-survey-on-dermatologic-procedures&quot; target=&quot;_blank&quot;&gt;https://www.asds.net/medical-professionals/practice-resources/asds-survey-on-dermatologic-procedures&lt;/a&gt;. Accessed August, 2019. In 2018, out of 623,000 Body sculpting procedures, there were 287,000 fat freezing / Cryolipolysis procedures.&lt;br /&gt;
+2. Allergan.CoolSculpting&#174; system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;
+3. Allergan. Patent – Control unit. US D568,258 S.2008&lt;br /&gt;
+4. Allergan. Patent – Monitoring the cooling of sub-cutaneous lipid rich cells, such as the cooling of the adipose tissue. US 8,285,390 B2. 2012&lt;br /&gt;
+5. Allergan. Patent – System for treating lipid-rich regions. US 8,523,297 B2. 2013&lt;br /&gt;
+6. Allergan. Patent – Device, system and method of removing heat from subcutaneous lipid rich cells. US 8,702,774,B2. 2014&lt;br /&gt;
+7. Sasaki GH, et al. Aesthet Surg J 2014;34:420-31&lt;br /&gt;
+8. Food and Drug Administration. K080521. Zeltiq™ Dermal Cooling Device. September 2010.
+&lt;/p&gt;
+&lt;div&gt;&amp;nbsp;&lt;/div&gt;">
+        </div>
+        <div hidden id="settings-metaimage" data-metaimage="/../-/media/project/coolsculpting/page/blogs/CS-Fakesmobile.jpg">
+        </div>
+    <div class="featurecomp_container blog bloginner">
+        <div class="block-inner">
+            <div class="bloginner-wrap">
+<img src="../Images/blank-image2125.png?la=en" dataheight="420" src="#" onload="InitialImageload(this)" loading="lazy" device="all" alt="video background" datasrc="/-/media/project/coolsculpting/page/blogs/cs-fakesmobile.jpg" class="bloginner-bg" />
+              
+                <div class="dialog-box">
+                    <div class="dialog-align">
+                        <h2>
+                            CoolSculpting VS Fakes
+                        </h2>
+                        <div hidden id="settings-title" data-titleblog="CoolSculpting VS Fakes"></div>
+                        <div hidden id="settings-name" data-titleblog="CoolSculpting VS Fakes"></div>
+                            <p>
+                                <p>Over the years, CoolSculpting® has carved a name for itself. It is one of the leading non-invasive procedures all over the world<sup>1</sup>. It is also the only fat freezing technology to have the coveted US FDA clearance<sup>8</sup>. Naturally, the brand CoolSculpting® has gained repute and with it a lot of imitators and fakes. Competing brands and cheap knock offs have made in-roads in the market by using the popularity and the demand for quick, painless and non-surgical fat reduction solutions.</p>
+<p>Apart from the high probability that the ‘treatments’ using counterfeit machines will yield no result and will be a waste of your money, there is considerable danger and risk to your health.</p>
+<p>CoolSculpting® has taken many precautions to ensure that your safety and comfort is paramount during your treatment.</p>
+<p>Patented technology such as Freeze Detect<sup>®2</sup> is in-built with CoolSculpting® machines and continuously monitors the temperature. CoolSculpting® is the only FDA approved machine for Cryolipolysis<sup>3-6</sup>, a technique for destroying fat cells by freezing them and removing them from the body normally and automatically. It is a technique that removes up to 27%<sup>7</sup> of the sub-cutaneous fat from the treatment area.</p>
+<p>The next time you walk in to a cosmetician’s clinic for CoolSculpting® insist on seeing the machine and the logo to be sure that you are getting the best and only the best.</p>
+<p><strong>References:</strong></p>
+<p>1. ASDS. Consumer survey on cosmetic dermatologic procedures 2018. <a href="https://www.asds.net/medical-professionals/practice-resources/asds-survey-on-dermatologic-procedures" target="_blank">https://www.asds.net/medical-professionals/practice-resources/asds-survey-on-dermatologic-procedures</a>. Accessed August, 2019. In 2018, out of 623,000 Body sculpting procedures, there were 287,000 fat freezing / Cryolipolysis procedures.<br />
+2. Allergan.CoolSculpting® system user manual. BRZ-101-TUM-EN4-H.2016<br />
+3. Allergan. Patent – Control unit. US D568,258 S.2008<br />
+4. Allergan. Patent – Monitoring the cooling of sub-cutaneous lipid rich cells, such as the cooling of the adipose tissue. US 8,285,390 B2. 2012<br />
+5. Allergan. Patent – System for treating lipid-rich regions. US 8,523,297 B2. 2013<br />
+6. Allergan. Patent – Device, system and method of removing heat from subcutaneous lipid rich cells. US 8,702,774,B2. 2014<br />
+7. Sasaki GH, et al. Aesthet Surg J 2014;34:420-31<br />
+8. Food and Drug Administration. K080521. Zeltiq™ Dermal Cooling Device. September 2010.
+</p>
+<div>&nbsp;</div>
+                            </p>
+                    </div>
+                        <div class="social">
+        <h4 class="info-header">
+            Share
+        </h4>
+        <ul class="social-icons">
+                    <li>
+                        <a href="https://m.facebook.com/sharer/sharer.php?kid_directed_site=0&amp;sdk=joey&amp;u=http%3A%2F%2Fwww.coolsculptingin.com%2Fblogs%2Fcoolsculpting-vs-fakes&amp;ref=plugin&amp;src=share_button" target="_blank" class="icon-sl" onclick=dataLayer.push({&#39;event&#39;:&#39;socialShareClick&#39;,&#39;platformLabel&#39;:&#39;Facebook&#39;,&#39;articleTitle&#39;:&#39;coolsculpting-vs-fakes&#39;});>
+                            <img src="/../-/media/project/coolsculpting/navigation/post-facebook2ea9.png?h=15&amp;w=8&amp;la=en&amp;hash=9ED3E165CDCBCECCBBC9CA3A1999BCCCA452140D" alt="CoolSculpting-post-facebook" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/home?status=http://www.coolsculptingin.com/blogs/coolsculpting-vs-fakes&amp;display=popup&amp;ref=plugin&amp;src=share_button" target="_blank" class="icon-sl" onclick=dataLayer.push({&#39;event&#39;:&#39;socialShareClick&#39;,&#39;platformLabel&#39;:&#39;Twitter&#39;,&#39;articleTitle&#39;:&#39;coolsculpting-vs-fakes&#39;});>
+                            <img src="/../-/media/project/coolsculpting/navigation/post-twitterec3a.png?h=13&amp;w=16&amp;la=en&amp;hash=CE23F28D3283F2C65F1A123B2CD550BA74E0912F" alt="CoolSculpting-post-twitter" />
+                        </a>
+                    </li>
+        </ul>
+    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div hidden id="titleblog">CoolSculpting VS Fakes</div>
+        
+
+    <section blogrelatedarticle id="blogarticle" ng-init="articleInit([{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:1080,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/inner-desktop-blog-1-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:1920,&quot;MediaId&quot;:&quot;1ab5ea8b-c2b5-4573-af53-c6b6cacf3b32&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;99302bcb-7edc-4dda-aa87-e05d6cccf9eb&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;The ABC Mantra of Getting Back to Shape&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:216,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/desktop--blog-1-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:358,&quot;MediaId&quot;:&quot;50c38ca7-7f9e-488f-b59a-2a927a0001dd&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;ul style=\&quot;margin-top: 0in; list-style-type: disc;\&quot;&gt;\r\n    &lt;li&gt;&lt;span&gt;To be in a desired shape is what everyone hopes for. &lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;To achieve it through an easy way is what no one knows about. &lt;/span&gt;&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;&lt;span&gt;These two statements fairly express the psyche of a vast majority in this fast-paced era; &lt;strong&gt;but not anymore&lt;/strong&gt;. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;The process of getting the desired shape is no more a hurdle. Yes, and we are making it easier for you, by listing the &lt;strong&gt;ABC mantra of getting back to shape&lt;/strong&gt;. &lt;/span&gt;&lt;/p&gt;\r\n&lt;ul style=\&quot;margin-top: 0in; list-style-type: disc;\&quot;&gt;\r\n    &lt;li&gt;&lt;strong&gt;&lt;span&gt;Active Lifestyle &lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;strong&gt;&lt;span&gt;Balanced Diet &lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;strong&gt;&lt;span&gt;CoolSculpting&amp;reg;&lt;/span&gt;&lt;/strong&gt;&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;br /&gt;\r\n&lt;p&gt;&lt;strong&gt;Active Lifestyle&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Active Lifestyle doesn&amp;rsquo;t mean that you must go through rigorous 120-pound exercises at a gym. No humping badly and no running rashly. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Just be active. Be active socially. Be active at your office. Be active at your home. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;The change always starts within. Begin to move around, take stairs instead of lift, spend time in doing easy exercises and take a walk with kids, whenever time permits. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;At least, once in a month, try trekking and let your body get used to it. Let&amp;rsquo;s be active in an easy way.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;Balanced Diet&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Avoiding oily foods is not balanced diet at all: it is a misconception. Balanced Diet is all about taking multi-nutritional eatables, neglecting the junk foods. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Skip worries and never your breakfast. Particularly, there is no standard balanced-diet prescription for everyone, as it varies from person to person. Just be a health literate. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Know yourself better. Sense the symptoms and consume accordingly. Plan your intakes.&amp;nbsp; That&amp;rsquo;s more than enough.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;CoolSculpting&amp;reg;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Unlike the other two options, this one doesn&amp;rsquo;t require any of your effort. At the same time, it gives you visible results&lt;sup&gt;4&lt;/sup&gt;. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;CoolSculpting&amp;reg; is a non-surgical fat reduction procedure&lt;sup&gt;1,2&lt;/sup&gt;. If you sense pinchable fat in your hip area, arms and abdomen&lt;sup&gt;3,4&lt;/sup&gt;, and if you want to get rid of it without any surgery, CoolSculpting&amp;reg; is the right choice. Through this procedure, even the thighs and back area&lt;sup&gt;3,4 &lt;/sup&gt;can be treated. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Notably, the duration of one CoolSculpting&amp;reg; cycle is just 35 to 60 minutes&lt;sup&gt;3&lt;/sup&gt;, based on the area being treated. It means it is not time consuming as well. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;As there are no syringes involved, many patients feel comfortable and prefer CoolSculpting&amp;reg; to reshape their body.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Find a CoolSculpting&amp;reg; partner clinic near you at &lt;a rel=\&quot;noopener noreferrer\&quot; href=../_https_/in.coolsculpting.com/find-a-clinic/_.html target=\&quot;_blank\&quot;&gt;https://in.coolsculpting.com/find-a-clinic&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;We suggest you make use of the ABC Mantra and get back to shape. Try to make it a part of your line of activities. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;To be in a desired shape is what everyone hopes for. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt; &lt;span&gt;To achieve it in an easy way is what you just read about.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;&lt;strong&gt;References:&amp;nbsp;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;\r\n1. Kilmer SL. Lasers Surg Med 2017; 49:63-8;&amp;nbsp;&lt;br /&gt;\r\n2. Kilmer SL, et al. Lasers Surg Med 2016; 48:3-13;&lt;br /&gt;\r\n3. Zelickson B, et al. Dermatol Surg 2009; 35:1462-70;&amp;nbsp;&lt;br /&gt;\r\n4. Klein KB, et al. Lasers Surg Med 2009;&lt;br /&gt;\r\n5. Allergan. Data on File. INT/0983/2017. CoolSculpting&amp;reg; treatment cycles. November 2017;&amp;nbsp;&lt;br /&gt;\r\n6. Allergan. Data on File. INT/0071/2018. CoolSculpting&amp;reg; publications. February 2018:&amp;nbsp;&lt;br /&gt;\r\n7. Allergan. CoolSculpting&amp;reg; system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\r\nNote: CoolSculpting&amp;reg; is a product of Allergan.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;mantra of getting back to shape&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:1,&quot;Url&quot;:&quot;/blogs/mantra-of-getting-back-to-shape&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/mantra of getting back to shape&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/tab-blog-1-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:327,&quot;MediaId&quot;:&quot;1ca41187-cef9-414e-963a-8cba9c60beee&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;The process of getting the desired shape is no more a hurdle. Yes, and we are making it easier for you, by listing the ABC mantra of getting back to shape.&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/mobile-blog-1-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;2b8a0718-445c-4739-b13c-80c7a77a379e&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:1080,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/inner-desktop-blog-2-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:1920,&quot;MediaId&quot;:&quot;51f8f25f-f0af-4b79-a361-4a9b43e89fde&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;fce70e5b-bcd3-44f1-bbe4-7e8327d81017&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;How Safe Is CoolSculpting&#174;?&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:216,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/desktop-blog-2-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:358,&quot;MediaId&quot;:&quot;0f68b2cc-02cc-4c7a-b86e-aea1b8d540a1&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p&gt;&lt;span&gt;Body contouring, in simple terms, is a procedure to alter the shape of the body by getting rid of excess fat cells. There are multiple ways through which this can be achieved.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Some procedures are invasive, i.e. needing surgery for the removal of fat. The most common invasive technique is liposuction. Other procedures are non-invasive, i.e. not requiring surgery. A non-invasive procedure may use lasers, ultrasound, radio frequency, heat to burn fat or extreme cold to freeze fat. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;CoolSculpting&amp;reg; is a non-invasive procedure that freezes fat&lt;sup&gt;1,2&lt;/sup&gt;&lt;/span&gt;. &lt;span&gt;It is based on a procedure called Cryolipolysis&lt;sup&gt;1&lt;/sup&gt;. During this procedure, the targeted pockets of fat are subjected to intensely cold temperatures to freeze fat cells which leads to the death of fat cells. The body then removes these dead fat cells naturally&lt;sup&gt;3,4&lt;/sup&gt;. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;However, we know that extreme temperatures, be it cold or hot, can cause damage to the body. Hence it raises the question, is CoolSculpting&amp;reg; safe? Are there any side effects that could cause lasting harm to someone undergoing the procedure? This post aims to help ease a few of those fears.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;QN. Does the intense cold damage the skin and result in freeze burns?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;ANS.&lt;/span&gt;&lt;/strong&gt;&lt;span&gt; Freeze burns occur when the skin is exposed to extreme cold. When undergoing a CoolSculpting&amp;reg; procedure from a trained and certified professional the possibility of a freeze burn is remote and negligible&lt;sup&gt;4,5,8&lt;/sup&gt;. Several fail-safes have been built in to the procedure for this reason.&lt;/span&gt;&lt;/p&gt;\r\n&lt;ol style=\&quot;margin-top: 0in;\&quot;&gt;\r\n    &lt;li&gt;&lt;span&gt;A special, patented gel pad is placed on the skin before the procedure starts. This gel pad is designed to keep the skin and the surrounding tissue safe. The applicator does not get in direct contact with the skin at any point of time&lt;sup&gt;5&lt;/sup&gt;. &lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;The applicators used with a CoolSculpting&amp;reg; machine use vacuum to suck in the pinchable tissue in the treatment area and apply targeted and controlled cooling to the fat cells.&lt;sup&gt;5&lt;/sup&gt;&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;Freeze Detect&amp;reg; and CoolConnect&amp;reg; technology continuously monitor and keep track of the temperature of the skin during the procedure. If at any point during the procedure the sensors detect a drop in optimum skin temperature, the CoolSculpting&amp;reg; machine immediately shuts down the procedure&lt;sup&gt;8&lt;/sup&gt;. &lt;/span&gt;&lt;/li&gt;\r\n&lt;/ol&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;QN. What are the side effects and how long do they last?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;ANS. &lt;/span&gt;&lt;/strong&gt;&lt;span&gt;Most of the side effects are resolved in a few days or weeks. These may include some redness and firmness, mild bruising around the edges of the treatment area, a tingling sensation, some cramping or numbness. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;For a full list of general side effects and certain rare side effects, click here. &lt;/span&gt;&lt;span&gt;&lt;a href=../_https_/in.coolsculpting.com/_.html target=\&quot;_blank\&quot;&gt;https://in.coolsculpting.com/&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;QN. Does the extreme cold affect other cells and tissues under the skin?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;ANS. &lt;/span&gt;&lt;/strong&gt;&lt;span&gt;Cryolipolysis means the death of fat cells.&lt;sup&gt;3&lt;/sup&gt; The temperature that the tissue is subjected to have an effect only on the fat cells in the target area. When applied right and by a trained professional, the cooling does not harm or have any effect on the surrounding tissue&lt;sup&gt;3&lt;/sup&gt;. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;QN. How painful is the procedure?&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;ANS. &lt;/span&gt;&lt;/strong&gt;&lt;span&gt;When the applicator is used there may be a tugging or pulling effect&lt;sup&gt;7&lt;/sup&gt; as the applicator sucks in the tissue. Once the procedure starts, there might be a tingling sensation as the temperature drops. However, this feeling soon subsides as the treatment area becomes numb. After that most people spend their time reading a book, watching TV or engaged on their mobiles like it&amp;rsquo;s a day at the spa. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;If there are any more concerns that you may have about your safety or if you have more queries about CoolSculpting&amp;reg;, some of our other blogs may help or you could reach out to one of our partner clinics any time.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;&lt;strong&gt;References:&lt;/strong&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;1. Kilmer SL. Lasers Surg Med 2017; 49:63-8;&amp;nbsp;&lt;br /&gt;\r\n2. Kilmer SL, et al. Lasers Surg Med 2016; 48:3-13;&lt;br /&gt;\r\n3. Zelickson B, et al. Dermatol Surg 2009; 35:1462-70;&amp;nbsp;&lt;br /&gt;\r\n4. Klein KB, et al. Lasers Surg Med 2009;&lt;br /&gt;\r\n5. Allergan. Data on File. INT/0983/2017. CoolSculpting&amp;reg; treatment cycles. November 2017;&amp;nbsp;&lt;br /&gt;\r\n6. Allergan. Data on File. INT/0071/2018. CoolSculpting&amp;reg; publications. February 2018:&amp;nbsp;&lt;br /&gt;\r\n7. Allergan. CoolSculpting&amp;reg; system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\r\n8. ASDS. Consumer survey on cosmetic dermatologic procedures 2016.&amp;nbsp;&lt;br /&gt;\r\nNote: CoolSculpting&amp;reg; is a product of Allergan.&lt;/span&gt;&lt;/p&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;how safe is coolsculpting&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:0,&quot;Url&quot;:&quot;/blogs/how-safe-is-coolsculpting&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/how safe is coolsculpting&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/tab-blog-2-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:327,&quot;MediaId&quot;:&quot;c949f13b-8f5d-4923-bfb2-49b16fff5b2c&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;Body contouring is a procedure to alter the shape of the body by getting rid of excess fat cells. There are multiple ways through which this can be achieved.&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/mobile-blog-2-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;a0a9b659-9234-4e6d-9090-8c09d461c05c&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:1080,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/inner-desktop-blog-3-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:1920,&quot;MediaId&quot;:&quot;8303603e-d68d-4e35-9660-5246cf105d00&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;18825718-dda4-4333-ae4b-c8516c127ca2&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;Reducing fat is not as tough as you think!&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:216,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/desktop-blog-3-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:358,&quot;MediaId&quot;:&quot;4f08ecf7-84ad-4985-a680-0d84e523aac4&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p&gt;&lt;span&gt;To look better is what everybody wants. Some people want to look fat, some of us want to look slim and a very few are okay with how they look. Therefore, be assured that you are not alone in this journey of getting the better look. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;If you want to look slimmer, reducing fat is a right solution. However, &lt;strong&gt;the treatment you choose determines whether the reduction process is easier or tougher. &lt;/strong&gt;That&amp;rsquo;s why the factors you should look for in a treatment are vital and indispensable. Here, we are listing the top 3 factors you must consider before choosing a fat reduction treatment in India. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;1. Safety&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;2. Efficacy &amp;amp; &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;3. Comfort&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Nothing else matters the most, concerning health, other than these three factors. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Among the options available to reduce fat, CoolSculpting&amp;reg; as a treatment stands apart, as it covers all the afore-mentioned factors.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;COOLSCULPTING&amp;reg; &amp;ndash; To be Slim without Surgery&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;CoolSculpting&amp;reg; is a renowned procedure to shape your body, by reducing unwanted fat and it makes you become slim without a surgery&lt;sup&gt;1,2,3&lt;/sup&gt;. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;During this procedure, the excess fat in body gets frozen and crystallized&lt;sup&gt;4,5&lt;/sup&gt;, through controlled cooling. Later, your body flushes off the frozen cells automatically&lt;sup&gt;5,6&lt;/sup&gt;. The entire treatment is simple and solution-oriented. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Thousands of people across the world prefer CoolSculpting&amp;reg; for body contouring. The success of CoolSculpting&amp;reg; shows how effectively it is mounted upon the top 3 factors, which have been mentioned earlier and explained further.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;Safety&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;It is quite normal for human nature to look for safety, throughout the endeavors. Particularly, we take extra precaution, when it comes to health. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;CoolSculpting&amp;reg; ensures safety through inbuilt sensors that monitor temperature and avoid freeze burns. Notably, CoolSculpting&amp;reg; has been the only US FDA cleared non-invasive fat&lt;sup&gt;2 &lt;/sup&gt;freezing procedure. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Since there is no surgery involved&lt;sup&gt;1,2&lt;/sup&gt;and it is completely an external procedure, the chance of facing threats is less compared to that of other available fat reduction methods. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;Note&lt;/span&gt;&lt;/strong&gt;&lt;span&gt;: Always look for CoolSculpting&amp;reg; partnered clinics. Get the list of clinics here &lt;a href=../_https_/in.coolsculpting.com/clinics-list/_.html target=\&quot;_blank\&quot;&gt;https://in.coolsculpting.com/clinics-list&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;Efficacy&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Results are evident through CoolSculpting&amp;reg;, as one can see visible changes after 8-12 weeks&lt;sup&gt;5&lt;/sup&gt;, depending on the number of cycles performed. CoolSculpting&amp;reg; is not just for one body part, but it can be used to reduce fat from areas such as chin, arms, flanks, abdomen, back and thighs&lt;sup&gt;4,5&lt;/sup&gt;. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;As it is carried out by experts after meticulous assessment, personalized procedure is assured to deliver expected results.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;&lt;span&gt;Comfort &lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;CoolSculpting&amp;reg; confirms and delivers comfort and relief during the treatment. &lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;The entire procedure, for a CoolSculpting&amp;reg; cycle, takes just around 35 to 60 minutes&lt;sup&gt;6&lt;/sup&gt;, depending on the area being treated. As there is no to little downtime&lt;sup&gt;2-4&lt;/sup&gt;, you can get back to your routine soon after the treatment. It also allows multi-tasking and you can be at ease reading or watching movies, etc.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;Stay comfort, be ready for efficacious results and be assured of safety. Try CoolSculpting&amp;reg; today.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;&lt;strong&gt;References:&amp;nbsp;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span&gt;1. Kilmer SL. Lasers Surg Med 2017; 49:63-8;&amp;nbsp;&lt;br /&gt;\r\n2. Kilmer SL, et al. Lasers Surg Med 2016; 48:3-13;&lt;br /&gt;\r\n3. Zelickson B, et al. Dermatol Surg 2009; 35:1462-70;&amp;nbsp;&lt;br /&gt;\r\n4. Klein KB, et al. Lasers Surg Med 2009;&lt;br /&gt;\r\n5. Allergan. Data on File. INT/0983/2017. CoolSculpting&amp;reg; treatment cycles. November 2017;&amp;nbsp;&lt;br /&gt;\r\n6. Allergan. Data on File. INT/0071/2018. CoolSculpting&amp;reg; publications. February 2018:&amp;nbsp;&lt;br /&gt;\r\n7. Allergan. CoolSculpting&amp;reg; system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\r\n8. ASDS. Consumer survey on cosmetic dermatologic procedures 2016.&amp;nbsp;&lt;br /&gt;\r\nNote: CoolSculpting&amp;reg; is a product of Allergan.&lt;/span&gt;&lt;/p&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;reducing fat is not as tough as you think&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:0,&quot;Url&quot;:&quot;/blogs/reducing-fat-is-not-as-tough-as-you-think&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/reducing fat is not as tough as you think&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/tab-blog-3-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:327,&quot;MediaId&quot;:&quot;a1b4a64c-1b3a-4450-8e9f-52826936926e&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;If you want to look slimmer, reducing fat is a right solution. However, the treatment you choose determines whether the reduction process is easier or tougher&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/mobile-blog-3-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;c78703e1-cf33-4317-ba0e-818b1f9fb8e9&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:1080,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/inner-desktop-blog-4-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:1920,&quot;MediaId&quot;:&quot;56f6858e-e96b-42ce-b02d-76c6a7e39bc9&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;8544952d-0811-4d04-9898-a0874540e54d&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;Why CoolSculpting&#174; should be your fat reduction solution!&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:216,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/desktop-blog-4-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:358,&quot;MediaId&quot;:&quot;4ef7ff40-92db-4846-884b-5dc2b7443454&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p style=\&quot;margin-bottom: 0.0001pt;\&quot;&gt;&lt;span&gt;For years,&amp;nbsp;&lt;/span&gt;&lt;span&gt;&lt;a href=../_https_/dermahealthinstitute.com/treatment/coolsculpting/___span.html style=\&quot;text-decoration: none; color: windowtext;\&quot;&gt;CoolSculpting&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;span&gt;&amp;reg;&amp;nbsp;has been a buzz word in the body contouring world. Over the last six years, CoolSculpting&amp;reg; has been performed on thousands of people and the technology has now evolved to extraordinary standards of excellence, proving that it is not a fad.&lt;/span&gt;&lt;/p&gt;\r\n&lt;ul style=\&quot;list-style-type: disc;\&quot;&gt;\r\n    &lt;li&gt;&lt;span&gt;CoolSculpting&amp;reg; has a very high patient satisfaction rating&lt;sup&gt;9&lt;/sup&gt;, with some patients reporting noticeable decrease in fat with no surgery and no down-time&lt;sup&gt;1,2,3&lt;/sup&gt;.&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;CoolSculpting&amp;reg; has also reduced the time it takes to have a treatment from 1 hour to 35 minutes per area.&lt;sup&gt;6&lt;/sup&gt;&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;Allergan, the leaders in facial aesthetics, has brought out this cutting- edge technology as a body contouring option.&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;A large group of the population want a &amp;lsquo;lunch time&amp;rsquo; solution and this is the perfect answer to their prayers.&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;CoolSculpting&amp;reg; is a safe treatment for surrounding tissue. It is FDA approved and the safety features are vouched for.&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;It is the only device that has patented FreezeDetect&amp;reg; and Cool Sense&amp;reg; technologies that keep the procedure constantly monitored. The FreezeDetect&amp;reg; sensors&lt;sup&gt;7&lt;/sup&gt; on the applicators will automatically and constantly track the skin temperature and immediately stop the treatment if there is even a hint of a problem.&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;CoolSculpting&amp;reg; now comes with various sizes of applicators&lt;sup&gt;1,2,3,4&lt;/sup&gt;, allowing a targeted and controlled treatment. These various pieces are crafted to fit different body parts, offering a more thorough treatment. This means clients do not need as many treatments as before.&amp;nbsp;&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;The number of body parts / indicators that can be treated now include double chin, under arms, bra fat, back bra fat, flanks, abdomen, inner and outer thighs, male breast and pinchable fat above the knees&lt;sup&gt;5,6&lt;/sup&gt;.&lt;/span&gt;&lt;/li&gt;\r\n    &lt;li&gt;&lt;span&gt;While it is true that various fat loss treatments come and go, CoolSculpting&amp;reg; has only grown in popularity, due to the increasingly positive results. The technology is now tested through time and more than 6 million procedures* have been successfully carried out and this number is only growing every day.&lt;/span&gt;&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p style=\&quot;margin-bottom: 0.0001pt;\&quot;&gt;&lt;span&gt;To find out if CoolSculpting&amp;reg; is the solution that you have been searching for, visit one of our registered CoolSculpting&amp;reg; clinics. Find one near you here at &lt;a href=../_https_/in.coolsculpting.com/find-a-clinic/_.html target=\&quot;_blank\&quot;&gt;in.coolsculpting.com/findaclinic&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p style=\&quot;margin-bottom: 0.0001pt;\&quot;&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p style=\&quot;margin-bottom: 0.0001pt;\&quot;&gt;&lt;span&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;\r\n&lt;p style=\&quot;margin-bottom: 0.0001pt;\&quot;&gt;&lt;span&gt;1. Kilmer SL. Lasers Surg Med 2017; 49:63-8;&amp;nbsp;&lt;br /&gt;\r\n2. Kilmer SL, et al. Lasers Surg Med 2016; 48:3-13;&lt;br /&gt;\r\n3. Zelickson B, et al. Dermatol Surg 2009; 35:1462-70;&amp;nbsp;&lt;br /&gt;\r\n4. Klein KB, et al. Lasers Surg Med 2009;&lt;br /&gt;\r\n5. Allergan. Data on File. INT/0983/2017. CoolSculpting&amp;reg; treatment cycles. November 2017;&amp;nbsp;&lt;br /&gt;\r\n6. Allergan. Data on File. INT/0071/2018. CoolSculpting&amp;reg; publications. February 2018:&amp;nbsp;&lt;br /&gt;\r\n7. Allergan. CoolSculpting&amp;reg; system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\r\n8. ASDS. Consumer survey on cosmetic dermatologic procedures 2016.&amp;nbsp;&lt;br /&gt;\r\nNote: CoolSculpting&amp;reg; is a product of Allergan.&lt;/span&gt;&lt;/p&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;why coolsculpting should be your fat reduction solution&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:0,&quot;Url&quot;:&quot;/blogs/why-coolsculpting-should-be-your-fat-reduction-solution&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/why coolsculpting should be your fat reduction solution&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/tab-blog-4-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:327,&quot;MediaId&quot;:&quot;76a0943c-844b-46d1-a168-4d10e8c6c6d5&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;Over the last six years, CoolSculpting&#174; has been performed on thousands of people and the technology has now evolved to extraordinary standards of excellence, proving that it is not a fad.&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/mobile-blog-4-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;f0efca8c-66c9-4157-9252-e56113045849&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:1025,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/inner-desktop-blog-5-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:1441,&quot;MediaId&quot;:&quot;ecf0ed65-2721-41fe-913c-01c6fc1e2e3a&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;2fa48410-666d-4345-aebd-7be876650b66&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;Body Positivity – Can We Love Our Body and Change It Too?&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:216,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/desktop--blog-5-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:358,&quot;MediaId&quot;:&quot;c93faf8a-bd88-45a4-bb30-91a7a62f95ca&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p&gt;If there is one sentence that should stay with you long after you&amp;rsquo;re done with this article, let it be this one - &lt;em&gt;&amp;lsquo;The desire to change how one looks does not mean we love our body any less&amp;rsquo;&amp;nbsp;&lt;/em&gt;&lt;/p&gt;\r\n&lt;p&gt;\r\nIn an environment that has convoluted the relationship between body positivity and body contouring, it becomes imperative that the nuance behind loving one&amp;rsquo;s body and desiring to change some part of it is understood.&lt;/p&gt;\r\n&lt;p&gt;\r\nOur body has been the one constant throughout our lives, ever dependable and reliable, a tool that has seen us through sickness and setback and celebrated with us for every good day and success, body positivity is accepting and adulating this body for all of that.&amp;nbsp;&lt;/p&gt;\r\n&lt;p&gt;\r\nTrying to change some part of this tool that we have, trying to look better is a choice that everyone of us enjoys, it is up to us to decide if we want it. To be wholly and completely satisfied with the exact way we look is a state of utopia that few of us have the privilege of attaining. For the rest of us, it is fortunate that we live in a time when we can actively take steps towards contouring our bodies to look better.&lt;/p&gt;\r\n&lt;p&gt;\r\nThere are numerous methods and techniques which are available today to aid us in doing exactly that and they can all be split under two broad categories &amp;ndash; invasive (requiring surgery) or non-invasive (not requiring surgery). Non-invasive methods of body contouring have gained popularity and are often requested as they are simple and, by large, painless.&lt;/p&gt;\r\n&lt;p&gt;\r\nFat freezing is a non-invasive&lt;sup&gt;1,2&lt;/sup&gt; and non-surgical method to lose stubborn fat and one of the popular techniques of fat freezing is CoolSculpting&amp;reg;. A simple and painless 35-minute procedure&lt;sup&gt;5,6,7&lt;/sup&gt; gives wonderful results. CoolSculpting&amp;reg; can be used to enhance the way we look by reducing fat from the abdomen, the arms, inner and outer thighs, and the flanks&lt;sup&gt;4&lt;/sup&gt;. In addition to these areas, CoolSculpting&amp;reg; can also address front and back bra fat and the little pouch of stubborn fat above the knees.&lt;/p&gt;\r\n&lt;p&gt;\r\nCoolSculpting &amp;reg; involves no pain, no downtime, no needles and there are no life-threatening side effects to be worried about. It is, what has been popularly known as, a &amp;lsquo;lunch time procedure&amp;rsquo;. Initial results can be seen in 2 &amp;ndash; 3 weeks and in about 3 months, one can admire the results which are permanent&lt;sup&gt;4,5&lt;/sup&gt;.&lt;/p&gt;\r\n&lt;p&gt;\r\nThis is not to say that CoolSculpting&amp;reg; can substitute working out at the gym or leading a healthy lifestyle or that you don&amp;rsquo;t love your body. It only aids us in loving our body for what it has done for us and for the way it looks as well. In the wise words of Shuri, from the Marvel Cinematic Universe, &amp;ndash; &lt;em&gt;&amp;lsquo;Just because something works doesn&amp;rsquo;t mean it can&amp;rsquo;t be improved.&amp;rsquo;&lt;/em&gt; Give it a chance, and appreciate your body in a completely new way.&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;\r\n1. Kilmer SL. Lasers Surg Med 2017; 49:63-8;&amp;nbsp;&lt;br /&gt;\r\n2. Kilmer SL, et al. Lasers Surg Med 2016; 48:3-13;&lt;br /&gt;\r\n3. Zelickson B, et al. Dermatol Surg 2009; 35:1462-70;&amp;nbsp;&lt;br /&gt;\r\n4. Klein KB, et al. Lasers Surg Med 2009;&lt;br /&gt;\r\n5. Allergan. Data on File. INT/0983/2017. CoolSculpting treatment cycles. November 2017;&lt;br /&gt;\r\n6. Allergan. Data on File. INT/0071/2018. CoolSculpting publications. February 2018:&amp;nbsp;&lt;br /&gt;\r\n7. Allergan. CoolSculpting system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\r\n8. ASDS. Consumer survey on cosmetic dermatologic procedures 2016.&amp;nbsp;&lt;/p&gt;\r\n&lt;div&gt;&amp;nbsp;&lt;/div&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;can we love our body and change It too&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:1,&quot;Url&quot;:&quot;/blogs/can-we-love-our-body-and-change-it-too&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/can we love our body and change It too&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/tab-blog-5-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:327,&quot;MediaId&quot;:&quot;50c04d41-4201-4d8d-8b27-a62a13706f18&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;If there is one sentence that should stay with you long after you’re done with this article, let it be this one - ‘The desire to change how one looks does not mean we love our body any less’&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/mobile-blog-5-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;ace8763c-98eb-475a-b9be-8ce83d5fc08e&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:1025,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/inner-desktop-blog-6-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:1441,&quot;MediaId&quot;:&quot;84e7a217-6880-4b92-9382-f4ea95fd6af3&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;698b3c40-3a57-4fa6-ac9b-8fa9f5e25ac7&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;Summer&#39;s all about Getting Hotter&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:216,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/desktop--blog-6-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:358,&quot;MediaId&quot;:&quot;819ffcfa-363b-462b-9297-69b312498bfa&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p&gt;Summer, Oh Summer, such a wonderful time! It&#39;s all about sun, fun and fun in the sun, pretty dresses and free flowing tresses. But, most importantly, summer means pools and beaches. Oversized shades, tall drinks and form fitting bikinis.&lt;/p&gt;\r\n&lt;p&gt;\r\nFor a lot of people though, the thought of flaunting a bikini brings to mind a little worry and doubt. Little pockets of fat on your body and wearing a bikini is suddenly a daunting ask. A trip to the beach should evoke thoughts of fun and not of worry. Take time to pick up a bikini you love, not to pick up the courage to wear them.&lt;/p&gt;\r\n&lt;p&gt;\r\n4 hours of sweating it out at the gym and months of carb free diet later, there are a few stubborn pockets of fat that just refuse to quit. What if there was a simple, effortless way to get lose those pockets of fat and bring out those curves? Turns out there is a way.&amp;nbsp;&lt;/p&gt;\r\n&lt;p&gt;\r\nFat freezing is a non-invasive&lt;sup&gt;1,2&lt;/sup&gt; and non-surgical method to lose stubborn fat and one of the popular techniques of fat freezing is CoolSculpting&amp;reg;. A simple and painless 35-minute procedure&lt;sup&gt;5,6,7&lt;/sup&gt; gives wonderful results. CoolSculpting&amp;reg; can be used to enhance the way we look by reducing fat from the abdomen, the arms, inner and outer thighs, and the flanks&lt;sup&gt;4&lt;/sup&gt;. In addition to these areas, CoolSculpting&amp;reg; can also address front and back bra fat and the little pouch of stubborn fat above the knees.&lt;/p&gt;\r\n&lt;p&gt;\r\nCoolSculpting &amp;reg; involves no pain, no downtime, no needles and there are no life-threatening side effects to be worried about. It is, what has been popularly known as, a &amp;lsquo;lunch time procedure&amp;rsquo;. Initial results can be seen in 2 &amp;ndash; 3 weeks and in about 3 months, one can admire the results which are permanent&lt;sup&gt;4,5&lt;/sup&gt;.&lt;/p&gt;\r\n&lt;p&gt;\r\nThis is not to say that CoolSculpting&amp;reg; can substitute working out at the gym or leading a healthy lifestyle but it does give our beach superstar a painless and effortless advantage and just helps fully embrace being hot this summer.&amp;nbsp;&lt;br /&gt;\r\n&lt;br /&gt;\r\n&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;\r\n1. Kilmer SL. Lasers Surg Med 2017; 49:63-8;&amp;nbsp;&lt;br /&gt;\r\n2. Kilmer SL, et al. Lasers Surg Med 2016; 48:3-13;&lt;br /&gt;\r\n3. Zelickson B, et al. Dermatol Surg 2009; 35:1462-70;&amp;nbsp;&lt;br /&gt;\r\n4. Klein KB, et al. Lasers Surg Med 2009;&lt;br /&gt;\r\n5. Allergan. Data on File. INT/0983/2017. CoolSculpting treatment cycles. November 2017;&lt;br /&gt;\r\n6. Allergan. Data on File. INT/0071/2018. CoolSculpting publications. February 2018:&amp;nbsp;&lt;br /&gt;\r\n7. Allergan. CoolSculpting system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\r\n8. ASDS. Consumer survey on cosmetic dermatologic procedures 2016.&amp;nbsp;&lt;/p&gt;\r\n&lt;div&gt;&amp;nbsp;&lt;/div&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;summers all about getting hotter&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:1,&quot;Url&quot;:&quot;/blogs/summers-all-about-getting-hotter&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/summers all about getting hotter&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/tab-blog-6-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:327,&quot;MediaId&quot;:&quot;4d757a4f-7b02-4659-8726-2aacad529cf9&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;It&#39;s all about sun, fun and fun in the sun, pretty dresses and free flowing tresses. But, most importantly, summer means pools and beaches. Oversized shades, tall drinks and form fitting bikinis.&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/mobile-blog-6-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;09b9fa22-94e4-4e2b-bec8-428159a73805&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:1025,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/inner-desktop-blog-7-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:1441,&quot;MediaId&quot;:&quot;60157166-eaa5-46d0-b47e-9121a9c647c2&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;5cabed97-6466-473e-97fa-2e2767331bfd&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;The Pride of the Bride&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:216,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/desktop--blog-7-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:358,&quot;MediaId&quot;:&quot;cd0d2b95-db45-49da-b2a8-9187d376f741&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p&gt;How easy would life, as a bride-to-be, be if following Jeanne Damas&amp;rsquo; maxim &amp;ndash; &amp;lsquo;The more effortless you look, the more chic you look&amp;rsquo; was as easy as it seemed?&amp;nbsp;&lt;/p&gt;\r\n&lt;p&gt;There are occasions in life which become special days: graduation, first job, first car, that coveted promotion, your first pet&amp;rsquo;s first birthday&amp;hellip;and then there is the special day, the day of the wedding. Every bride wants that day to be perfect, from the seating arrangements, to the colour of the cloth on the chairs to the way she looks. Contrary to popular belief, this has nothing to do with pleasing her in-laws or to wow the crowd, that day has to be perfect simply because it is her day and she is proud of it.&amp;nbsp;&lt;/p&gt;\r\n&lt;p&gt;Walking in to the hall and having the crowd go &amp;lsquo;WOW&amp;rsquo; is a feeling that words do little justice to. The bridal wear, makeup and makeovers aside, a woman&amp;rsquo;s physique itself plays an important part in determining how confident she feels on her wedding day.&amp;nbsp;&lt;/p&gt;\r\n&lt;p&gt;4 hours of sweating it out at the gym and months of carb free diet later, there are a few stubborn pockets of fat that just refuse to quit. What if there was a simple, effortless way to lose those pockets of fat and bring out those curves? Turns out there is a way.&amp;nbsp;&lt;/p&gt;\r\n&lt;p&gt;Fat freezing is a non-invasive&lt;sup&gt;1,2&lt;/sup&gt; and non-surgical method to lose stubborn fat and one of the popular techniques of fat freezing is CoolSculpting&amp;reg;. A simple and painless 35-minute procedure&lt;sup&gt;5,6,7&lt;/sup&gt; gives wonderful results. CoolSculpting&amp;reg; can be used to enhance the way we look by reducing fat from the abdomen, the arms, inner and outer thighs, and the flanks&lt;sup&gt;4&lt;/sup&gt;. In addition to these areas, CoolSculpting&amp;reg; can also address front and back bra fat and the little pouch of stubborn fat above the knees.&lt;/p&gt;\r\n&lt;p&gt;CoolSculpting &amp;reg; involves no pain, no downtime, no needles and there are no life-threatening side effects to be worried about. It is, what has been popularly known as, a &amp;lsquo;lunch time procedure&amp;rsquo;. Initial results can be seen in 2 &amp;ndash; 3 weeks and in about 3 months, one can admire the results which are permanent&lt;sup&gt;4,5&lt;/sup&gt;.&lt;/p&gt;\r\n&lt;p&gt;This is not to say that CoolSculpting&amp;reg; can substitute working out at the gym or leading a healthy lifestyle but it does give the bride-to-be a painless and effortless advantage and just helps fully embrace the pride of the bride on her wedding day. Perhaps, Jeanne Damas was right after all, effortless is chic indeed.&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p&gt;1. Kilmer SL. Lasers Surg Med 2017; 49:63-8;&amp;nbsp;&lt;br /&gt;\r\n2. Kilmer SL, et al. Lasers Surg Med 2016; 48:3-13;&lt;br /&gt;\r\n3. Zelickson B, et al. Dermatol Surg 2009; 35:1462-70;&amp;nbsp;&lt;br /&gt;\r\n4. Klein KB, et al. Lasers Surg Med 2009;&lt;br /&gt;\r\n5. Allergan. Data on File. INT/0983/2017. CoolSculpting treatment cycles. November 2017; &lt;br /&gt;\r\n6. Allergan. Data on File. INT/0071/2018. CoolSculpting publications. February 2018:&amp;nbsp;&lt;br /&gt;\r\n7. Allergan. CoolSculpting system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\r\n8. ASDS. Consumer survey on cosmetic dermatologic procedures 2016.&amp;nbsp;&lt;/p&gt;\r\n&lt;div&gt;&amp;nbsp;&lt;/div&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;the pride of the bride&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:1,&quot;Url&quot;:&quot;/blogs/the-pride-of-the-bride&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/the pride of the bride&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/tab-blog-7-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:327,&quot;MediaId&quot;:&quot;922eb739-b3f9-43d9-a75e-278d84292893&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;How easy would life, as a bride-to-be, be if following Jeanne Damas’ maxim – ‘The more effortless you look, the more chic you look’ was as easy as it seemed?&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/mobile-blog-7-india.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;e9df540a-6ab3-46fa-883a-4774e0707382&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:420,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-procedre-mobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:657,&quot;MediaId&quot;:&quot;7473fcad-eea0-4803-97bc-c8ea23c7d2dc&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;92519c73-b135-4c49-91f6-2ff266d13f85&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;What Happens During the CoolSculpting Session?&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:420,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-procedre-mobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:657,&quot;MediaId&quot;:&quot;7473fcad-eea0-4803-97bc-c8ea23c7d2dc&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p&gt;After an in-depth session with your CoolSculpting&#174; practitioner you have now arrived at the clinic for your session. You know that your session is only going to last a few minutes, but what happens in those few minutes? While you are relaxing, catching up on the latest series or finishing that interesting book, what is the CoolSculpting&#174; machine doing to give you your dream physique?&lt;/p&gt;\n&lt;p&gt;Your practitioner would have placed a gel pad on the treatment area and placed the applicator on it. The gel pad is a safety measure to ensure your safety. The applicator uses vacuum to suck in pinchable fat in the treatment area and begins cooling. The temperature on the skin reaches low temperatures and at which the sub-cutaneous fat cells begin to freeze and die&lt;sup&gt;1&lt;/sup&gt; In the session, up to 27% of the fat cells are destroyed&lt;sup&gt;2&lt;/sup&gt;.&lt;p/&gt;\n&lt;p&gt;All this while, you barely feel anything except a mild tugging sensation when the applicator sucks in the fat and the rapid cooling sensation in the beginning. In a short while, that cooling sensation is replaced with numbness&lt;sup&gt;3&lt;/sup&gt;. In the days following the session, your body automatically removes the dead fat cells and disposes them naturally&lt;sup&gt;4&lt;/sup&gt;. And just like that, you are on your way to a fitter body.&lt;/p&gt;\n&lt;p&gt;Now that you know, what are you waiting for? Go realize your dream today. Just remember to find a registered CoolSculpting partner for best results.&lt;/p&gt;\n\n\n&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;1. Zelickson B, et al. Dermatol Surg 2009; 35:1462-70&lt;br /&gt;\n2. Sasaki GH, et al. Aesthet Surg J 2014;34:420-31&lt;br /&gt;\n3. Allergan.CoolSculpting&#174; system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\n4. Klein KB et al. Surg Med 2009;41:785-90&lt;br /&gt;&lt;/p&gt;\n&lt;div&gt;&amp;nbsp;&lt;/div&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;During the CoolSculpting Session&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:1,&quot;Url&quot;:&quot;/blogs/during-the-coolsculpting-session&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/During the CoolSculpting Session&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:600,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-procedre-tablet.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:864,&quot;MediaId&quot;:&quot;f35e407d-f074-47ef-82ec-2e34b614a742&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;After an in-depth session with your CoolSculpting&#174; practitioner you have now arrived at the clinic for your session.&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/rsz_cs_procedre_mobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;4d6ddbf1-2c2f-4a5d-9b4b-a12e67c720d7&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:420,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-treatment-mobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:657,&quot;MediaId&quot;:&quot;696b27dd-213c-4313-8db0-74f4fd40d467&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;c3e52d5f-8c5b-407e-bafd-77193230605a&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;CoolSculpting Treatment Cost&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:420,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-treatment-mobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:657,&quot;MediaId&quot;:&quot;696b27dd-213c-4313-8db0-74f4fd40d467&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p&gt;Of late, there is one word which gets all the buzz in the field of &lt;b&gt;Fat Reduction in India&lt;/b&gt;. That one word is getting talked about a lot. That one word is searched about quite often. That one word is shared across digital platforms.&lt;/p&gt;\n&lt;p&gt;That one word is… CoolSculpting. It is a US FDA cleared&lt;sup&gt;1&lt;/sup&gt; non-surgical fat reduction procedure.&lt;/p&gt;\n&lt;p&gt;CoolSculpting is a customized procedure and it varies from person to person. The area to be treated and the number of cycles to be performed play a crucial role in determining the &lt;b&gt;CoolSculpting Treatment Price&lt;/b&gt;.&lt;/p&gt;\n&lt;p&gt;From its inception, CoolSculpting has been carrying a “popular” tag along with it. As it is popular, people tend to assume that it is an expensive treatment. In addition to that, over the walls of internet, we might have seen the &lt;b&gt;Cost of CoolSculpting Treatment&lt;/b&gt; stated randomly. However, for a CoolSculpting procedure, there is no standard price for everyone. Everything you see on the internet regarding the &lt;b&gt;CoolSculpting Treatment Cost&lt;/b&gt; is just an assumption.&lt;/p&gt;\n&lt;p&gt;To know more about a CoolSculpting treatment package, visit the nearest CoolSculpting partnered clinic.&lt;/p&gt;\n\n&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;1. Food and Drug Administration. K080521. Zeltiq™ Dermal Cooling Device. September 2010&lt;/p&gt;\n&lt;div&gt;&amp;nbsp;&lt;/div&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;CoolSculpting Treatment Cost&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:1,&quot;Url&quot;:&quot;/blogs/coolsculpting-treatment-cost&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/CoolSculpting Treatment Cost&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:600,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-treatment-tablet.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:864,&quot;MediaId&quot;:&quot;188cefee-d8d4-43cd-a3ea-250c3906aad0&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;Of late, there is one word which gets all the buzz in the field of &lt;b&gt;Fat Reduction in India&lt;/b&gt;. That one word is getting talked about a lot. That one word is searched about quite often. That one word is shared across digital platforms.&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/rsz_cs_treatment_mobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;a6e70324-cdc7-4450-9b49-b68d2ce928a2&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;},{&quot;__interceptors&quot;:[{&quot;Values&quot;:{&quot;Text&quot;:&quot;&quot;,&quot;CSSClass&quot;:null,&quot;Icon&quot;:null,&quot;Subtitle&quot;:null,&quot;BlogInnerImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:420,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-fakesmobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:657,&quot;MediaId&quot;:&quot;ae2e495a-a3ea-4cb1-b905-3de5757b9164&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;DisplayName&quot;:&quot;&quot;,&quot;CourtesyText&quot;:null,&quot;BlogCount&quot;:0,&quot;Id&quot;:&quot;a90c6bd4-2661-4b52-b17a-327109057712&quot;,&quot;Value&quot;:&quot;articleLinkClick&quot;,&quot;ExternalUrlButtonText&quot;:null,&quot;DynamicGeneratedValue&quot;:null,&quot;EventValue1&quot;:&quot;&quot;,&quot;EventValue2&quot;:&quot;&quot;,&quot;IsExternalBlogUrl&quot;:false,&quot;CancelButtonText&quot;:null,&quot;Video1IframeSrcURL&quot;:&quot;&quot;,&quot;ImageButtonsBottomText&quot;:null,&quot;Title&quot;:&quot;CoolSculpting VS Fakes&quot;,&quot;TemplateId&quot;:&quot;22b4960c-0aeb-4a90-b5df-bb680a7afcbf&quot;,&quot;Key&quot;:&quot;event&quot;,&quot;Image&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:420,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-fakesmobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:657,&quot;MediaId&quot;:&quot;ae2e495a-a3ea-4cb1-b905-3de5757b9164&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;Description&quot;:&quot;&lt;p&gt;Over the years, CoolSculpting&#174; has carved a name for itself. It is one of the leading non-invasive procedures all over the world&lt;sup&gt;1&lt;/sup&gt;. It is also the only fat freezing technology to have the coveted US FDA clearance&lt;sup&gt;8&lt;/sup&gt;. Naturally, the brand CoolSculpting&#174; has gained repute and with it a lot of imitators and fakes. Competing brands and cheap knock offs have made in-roads in the market by using the popularity and the demand for quick, painless and non-surgical fat reduction solutions.&lt;/p&gt;\n&lt;p&gt;Apart from the high probability that the ‘treatments’ using counterfeit machines will yield no result and will be a waste of your money, there is considerable danger and risk to your health.&lt;/p&gt;\n&lt;p&gt;CoolSculpting&#174; has taken many precautions to ensure that your safety and comfort is paramount during your treatment.&lt;/p&gt;\n&lt;p&gt;Patented technology such as Freeze Detect&lt;sup&gt;&#174;2&lt;/sup&gt; is in-built with CoolSculpting&#174; machines and continuously monitors the temperature. CoolSculpting&#174; is the only FDA approved machine for Cryolipolysis&lt;sup&gt;3-6&lt;/sup&gt;, a technique for destroying fat cells by freezing them and removing them from the body normally and automatically. It is a technique that removes up to 27%&lt;sup&gt;7&lt;/sup&gt; of the sub-cutaneous fat from the treatment area.&lt;/p&gt;\n&lt;p&gt;The next time you walk in to a cosmetician’s clinic for CoolSculpting&#174; insist on seeing the machine and the logo to be sure that you are getting the best and only the best.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;1. ASDS. Consumer survey on cosmetic dermatologic procedures 2018. &lt;a href=../_.html https://www.asds.net/medical-professionals/practice-resources/asds-survey-on-dermatologic-procedures\&quot; target=\&quot;_blank\&quot;&gt;https://www.asds.net/medical-professionals/practice-resources/asds-survey-on-dermatologic-procedures&lt;/a&gt;. Accessed August, 2019. In 2018, out of 623,000 Body sculpting procedures, there were 287,000 fat freezing / Cryolipolysis procedures.&lt;br /&gt;\n2. Allergan.CoolSculpting&#174; system user manual. BRZ-101-TUM-EN4-H.2016&lt;br /&gt;\n3. Allergan. Patent – Control unit. US D568,258 S.2008&lt;br /&gt;\n4. Allergan. Patent – Monitoring the cooling of sub-cutaneous lipid rich cells, such as the cooling of the adipose tissue. US 8,285,390 B2. 2012&lt;br /&gt;\n5. Allergan. Patent – System for treating lipid-rich regions. US 8,523,297 B2. 2013&lt;br /&gt;\n6. Allergan. Patent – Device, system and method of removing heat from subcutaneous lipid rich cells. US 8,702,774,B2. 2014&lt;br /&gt;\n7. Sasaki GH, et al. Aesthet Surg J 2014;34:420-31&lt;br /&gt;\n8. Food and Drug Administration. K080521. Zeltiq™ Dermal Cooling Device. September 2010.\n&lt;/p&gt;\n&lt;div&gt;&amp;nbsp;&lt;/div&gt;&quot;,&quot;NavigationImage&quot;:{&quot;Alt&quot;:&quot;CoolSculpting-circle-arrow _lg&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:48,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/navigation/circle-arrow-_lg.png&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:48,&quot;MediaId&quot;:&quot;f09da67b-3358-49f2-b0e3-72717833df89&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;ImageButtonNavigationURL2&quot;:null,&quot;ImageButtonNavigationURL1&quot;:null,&quot;EventKey&quot;:&quot;URL&quot;,&quot;Name&quot;:&quot;CoolSculpting VS Fakes&quot;,&quot;Child&quot;:[],&quot;URL&quot;:{&quot;Anchor&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Text&quot;:&quot;blogs&quot;,&quot;Query&quot;:&quot;&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Url&quot;:&quot;/blogs&quot;,&quot;Target&quot;:&quot;&quot;,&quot;TargetId&quot;:&quot;fe904c57-85dd-4ad0-ad2d-471f3e14870c&quot;,&quot;Type&quot;:4,&quot;Style&quot;:&quot;&quot;},&quot;TemplateName&quot;:&quot;BlogPage&quot;,&quot;Sortorder&quot;:1,&quot;Url&quot;:&quot;/blogs/coolsculpting-vs-fakes&quot;,&quot;FullPath&quot;:&quot;/sitecore/content/Allergan-Sites/Body Contouring/CoolSculpting/IN/Home/blogs/CoolSculpting VS Fakes&quot;,&quot;TabletImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:600,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/cs-fakes-tablet.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:864,&quot;MediaId&quot;:&quot;1968c35e-4088-416e-a3fb-73e3ed7585af&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;EventKey1&quot;:&quot;articleTitle&quot;,&quot;EventKey2&quot;:&quot;&quot;,&quot;ImageButtonSource2&quot;:null,&quot;ExternalUrlMessageTitle&quot;:null,&quot;ExternalBlogUrl&quot;:null,&quot;BlogChild&quot;:[],&quot;ImageButtonSource1&quot;:null,&quot;EventValue&quot;:&quot;blog/&quot;,&quot;ExternalUrlMessageDescription&quot;:null,&quot;DashboardDescription&quot;:&quot;Over the years, CoolSculpting&#174; has carved a name for itself. It is one of the leading non-invasive procedures all over the world&lt;sup&gt;1&lt;/sup&gt;. It is also the only fat freezing technology to have the coveted US FDA clearance&lt;sup&gt;8&lt;/sup&gt;. Naturally, the brand CoolSculpting&#174; has gained repute and with it a lot of imitators and fakes.&quot;,&quot;Category&quot;:&quot;&quot;,&quot;BlogSearchLabel&quot;:null,&quot;MobileImage&quot;:{&quot;Alt&quot;:&quot;&quot;,&quot;Border&quot;:&quot;&quot;,&quot;Class&quot;:&quot;&quot;,&quot;Height&quot;:140,&quot;HSpace&quot;:0,&quot;Src&quot;:&quot;/-/media/project/coolsculpting/page/blogs/rsz_cs_fakesmobile.jpg&quot;,&quot;VSpace&quot;:0,&quot;Width&quot;:287,&quot;MediaId&quot;:&quot;b1fc13c0-b06d-4efe-a535-d9cf3f32fadd&quot;,&quot;Title&quot;:&quot;&quot;,&quot;Language&quot;:{&quot;Name&quot;:&quot;en&quot;}},&quot;BlogSearchPlaceholder&quot;:null,&quot;Date&quot;:&quot;&quot;}}],&quot;__target&quot;:null,&quot;__interfaces&quot;:[],&quot;__baseType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__proxyGenerationOptions&quot;:{&quot;hook&quot;:{},&quot;selector&quot;:null,&quot;mixins&quot;:null,&quot;baseTypeForInterfaceProxy.AssemblyQualifiedName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},&quot;__proxyTypeId&quot;:&quot;interface.without.target&quot;,&quot;__targetFieldType&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;__theInterface&quot;:&quot;Agn.Feature.Page.Models.IBlog, Agn.Feature.Page, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;}])">
+        <div class="next-previous" ng-hide="relatedarticles.length == 0">
+            <div class="row">
+                <div class="large-12 column">
+                    <div class="wr-previous">
+                        <div ng-hide="currentpos<=0">
+                            <a href="{{prevlink}}" onclick="dataLayer.push({'event':'Pagination','currentPage':p://www.coolsculptingin.com/blogs/coolsculpting-vs-fakes,'buttonLabel':'PREVIOUS'});"><span class="wrpreviousarrow">‹</span> <span class="wrprevious">PREVIOUS</span></a>
+                        </div>
+                    </div>
+                    <div class="wr-next">
+                        <div ng-hide="currentpos==lastpos">
+                            <a href="{{nextlink}}" onclick="dataLayer.push({'event':'Pagination','currentPage':p://www.coolsculptingin.com/blogs/coolsculpting-vs-fakes,'buttonLabel':'NEXT'});"><span class="wrnext">NEXT</span> <span class="wrnextarrow">›</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="featureBox-two" ng-hide="relatedarticles.length == 0">
+            <div class="feature-box-title">
+                    <h3 class="featureComp_headingrelated">
+                        Related Articles
+                    </h3>
+                <div class="feature-box-content clearfix" role="list">
+                    <div class="item" role="listItem" ng-repeat="inner in relatedarticles">
+                        <a href="javascript:void(0);" ng-click="relatedArticlesClicked(inner);" class="blog">
+                            <div class="featureImg-wrapper">
+                                <!--desktop image above 992px-->
+                                <img src="{{inner.__interceptors[0].Values.Image.Src}}" class="ft_img hidden-xs hidden-sm" />
+                                <!--tablet image 768px to 992px-->
+                                <img src="{{inner.__interceptors[0].Values.TabletImage.Src}}" class="ft_img hidden-xs hidden-md hidden-lg" />
+                                <!--mobile image below 768px-->
+                                <img src="{{inner.__interceptors[0].Values.MobileImage.Src}}" class="image-responsive ft_img hidden-sm hidden-md hidden-lg" />
+                            </div>
+                        </a>
+                        <div class="item-info">
+                            <a href="javascript:void(0);" ng-click="relatedArticlesClicked(inner);" class="blog">
+                                <h4 class="info-header" ng-bind-html="inner.__interceptors[0].Values.Title | unsafe"></h4>
+                            </a>
+                            <a href="javascript:void(0);" ng-click="relatedArticlesClicked(inner);" class="blog">
+                                <p class="fc_p" ng-bind-html="inner.__interceptors[0].Values.DashboardDescription | unsafe">
+                                </p>
+                            </a>
+
+                            <div class="info-date">
+                                {{inner.__interceptors[0].Values.Date}}
+                            </div>
+                            <a href="javascript:void(0);" ng-click="relatedArticlesClicked(inner);" class="blog">
+                                <div class="info-arrow">
+                                    <img src="{{inner.__interceptors[0].Values.NavigationImage.Src}}" alt="click to action" />
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="BlogExternalUrlMsgModal" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" style="text-align: left;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body body-style1"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default accept-btn article-btn" data-dismiss="modal"></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoad', () => {
+            var metatitle = document.createElement('meta');
+            var contenttitle = $("#settings-metatitle").data("metatitle");
+            metatitle.setAttribute('property', 'og:title');
+            metatitle.setAttribute('content', contenttitle);
+            document.getElementsByTagName('head')[0].appendChild(metatitle);
+
+            var metadescription = document.createElement('meta');
+            var contentdesc = $("#settings-metadescription").data("metadescription");
+            contentdesc = contentdesc.substring(0, 100);
+            metadescription.setAttribute('property', 'og:description');
+            metadescription.setAttribute('content', contentdesc);
+            document.getElementsByTagName('head')[0].appendChild(metadescription);
+
+            var metaurl = document.createElement('meta');
+            var contenturl = $("#settings-metaurl").data("metaurl");
+            metaurl.setAttribute('property', 'og:url');
+            metaurl.setAttribute('content', contenturl);
+            document.getElementsByTagName('head')[0].appendChild(metaurl);
+
+            var metaimage = document.createElement('meta');
+            var contentimage = $("#settings-metaimage").data("metaimage");
+            metaimage.setAttribute('property', 'og:image');
+            metaimage.setAttribute('content', contentimage);
+            document.getElementsByTagName('head')[0].appendChild(metaimage);
+        })
+    </script>
+
+    <section links class="ng-scope">
+        <div class="link-container">
+            <ul class="block-inner">
+                
+            </ul>
+        </div>
+    </section>
+</section>
+
+            
+        </main>
+
+        <!--Start: Country Selection-->
+        <section country-selection class="ng-scope">
+                    <div id="cs-model" class="modal fade in" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" role="document">
+                    <div class="modal-header">
+                        <div class="cs-close-wrap">
+<img src="/../-/media/project/coolsculpting/navigation/close.png?h=24&amp;w=24&amp;la=en&amp;hash=B9539B9D19DA2499438348F05366BC216206305C" Class="close" data-dismiss="modal" alt="CoolSculpting-close" />                        </div>
+
+                            <p class="modal-title">
+                                This website is intended for people who reside in INDIA only.  If you want to view another website please choose from the list below:
+                            </p>
+                    </div>
+                    <div class="modal-body">
+                        <div class="cs-wrapper">
+                            <ul>
+                                                <li>
+<a href="http://uk.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'United Kingdom','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/gb.png" alt="CoolSculpting-gb" />                                                            <span class="cs-text">
+                                                                UK
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="http://pl.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Poland','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/Poland_Flag.png" alt="CoolSculpting-Poland_Flag" />                                                            <span class="cs-text">
+                                                                Poland
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="http://www.coolsculpting-france.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'France','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/fr.png" alt="CoolSculpting-fr" />                                                            <span class="cs-text">
+                                                                France
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="http://de.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Germany','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/de.png" alt="CoolSculpting-de" />                                                            <span class="cs-text">
+                                                                Germany
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="http://www.congelatugrasa.es/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Spain','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/es.png" alt="CoolSculpting-es" />                                                            <span class="cs-text">
+                                                                Spain
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="http://br.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Brazil','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/br.png" alt="CoolSculpting-br" />                                                            <span class="cs-text">
+                                                                Brazil
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="http://www.coolsculpting.com.cn/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'China','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/cn.png" alt="CoolSculpting-cn" />                                                            <span class="cs-text">
+                                                                China
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="http://nl.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Netherlands','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/nl.png" alt="CoolSculpting-nl" />                                                            <span class="cs-text">
+                                                                Netherland
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="https://www.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'USA','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/us.png" alt="CoolSculpting-us" />                                                            <span class="cs-text">
+                                                                USA
+                                                            </span>
+</a>                                                </li>
+                                                <li>
+<a href="https://www.freezefattostaycool.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Thailand','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="../Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/th.png" alt="CoolSculpting-th" />                                                            <span class="cs-text">
+                                                                Thailand
+                                                            </span>
+</a>                                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </section>
+        <!--End: Country Selection-->
+        <!-------------------------------------------------------------------------------------->
+        <!--Start: Footer Section-->
+        <section footer class="ng-scope">
+            <footer class="footer-section" role="contentinfo">
+                <div class="clinic-loc">
+                    <div class="block-inner">
+                        <!--Skip find a clinic for mea region sites non-veeva clinic-->
+
+
+<form class="form-inline ng-pristine ng-valid">
+
+        <label for="footerSearch" class="label-clinic">Find a clinic</label>
+    <div class="input-group" role="search">
+            <input type="text" id="footerSearch" data-nav="findaclinic" ng-keypress="searchftrClinic($event);" class="find-clinic-input form-control search-loc" placeholder="Enter city or postcode" autocomplete="off">
+
+<a href="/../find-a-clinic" class="map-pin-container pin-nav" target="_blank" role="button" ng-click="footerLocSearch($event);" ><img src="/../-/media/project/coolsculpting/findclinic/icon-searchcfd3.png?h=24&amp;w=24&amp;la=en&amp;hash=86EFFC319EDF55A6C999D1CFE88D95045B851D64" class="v-center" alt="CoolSculpting-icon-search" /></a>
+
+    </div>
+
+
+    <div class="hidden">
+            <div id="Apigeolocationerr">API GEOLOCATION ERROR!</div>
+    </div>
+    <div class="modal fade" id="footerErrorModal" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" style="text-align: left;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Error</h4>
+                </div>
+                    <div class="modal-body body-style1">PLEASE ENTER VALID CITY OR ZIP CODE</div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+
+                    </div>
+                </div>
+                <div class="footer-inner clearfix">
+                    <div class="block-inner">
+                        <div class="footer-sec2">
+                            <a href="../" class="ws-logo" ><img src="../Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" /></a><ul class="social-icons">
+                    <li>
+<a href="https://instagram.com/coolsculptingindia?utm_source=ig_profile_share&amp;igshid=1htrcs00ntgbp" class="icon-s1" target="_blank" ="" ><img src="/../-/media/project/coolsculpting/navigation/instagram.png?la=en&amp;hash=A9B372CBC588A3FC2EC64515DCD546DE23139B08" dataheight="38" src="../Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/instagram.png" alt="CoolSculpting-instagram" /></a>
+                    </li>
+                    <li>
+<a href="https://www.facebook.com/profile.php?id=305983096629825&amp;ref=br_rs" class="icon-s1" target="_blank" ="" ><img src="/../-/media/project/coolsculpting/navigation/fb.png?la=en&amp;hash=FD32A5C849C02E3708381E1E4878B7890F2CDC40" dataheight="38" src="../Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/fb.png" alt="CoolSculpting-fb" /></a>
+                    </li>
+                    <li>
+<a href="https://twitter.com/A_coolsculpting" class="icon-s1" target="_blank" ="" ><img src="/../-/media/project/coolsculpting/navigation/twitter.png?la=en&amp;hash=F09BDF30A407BDCC57E058DBC908E7894E37DE7E" dataheight="38" src="../Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/twitter.png" alt="CoolSculpting-twitter" /></a>
+                    </li>
+</ul>
+<a href="https://www.allerganaesthetics.co.in/" class="ws-logo" target="_blank" ><img src="../Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/homepage/webp/AllerganAesthetics_logo_black.png" alt="" />                <span class="sr-only"></span>
+</a>        <p class="footer-logo-info">Made by Allergan, world leader in medical aesthetics</p>
+
+                        </div>
+                        <div class="footer-sec1">
+                                <div class="sec-inner section-links">
+        <ul class="footer-links">
+                        <li>
+<a href="https://privacy.abbvie/privacy-policies/india-privacy-notice" Class="icon-link" aria-label="Privacy Policy" target="_blank" >Privacy Policy</a>                        </li>
+                        <li>
+<a href="/../terms-and-conditions" aria-label="Terms and Conditions" Class="icon-link" >T&amp;C's</a>                        </li>
+                        <li>
+<a href="/../disclaimers" aria-label="Disclaimers" Class="icon-link" >Disclaimers</a>                        </li>
+                        <li>
+<a href="/../sitemap" aria-label="Site map" Class="icon-link" >Site Map</a>                        </li>
+                        <li>
+<a href="/../contact-us" aria-label="Contact us" Class="icon-link" >Contact us</a>                        </li>
+                        <li>
+<a href="javascript:void(0)" class="ot-sdk-show-settings" Class="icon-link" aria-label="" title="Overridden by OneTrust" >Cookie Settings</a>                        </li>
+        </ul>
+    </div>
+
+
+                            <div class="sec-inner country-select clearfix">
+                                <ul class="social-icons">
+                    <li>
+<a href="https://instagram.com/coolsculptingindia?utm_source=ig_profile_share&amp;igshid=1htrcs00ntgbp" class="icon-s1" target="_blank" ="" ><img src="/../-/media/project/coolsculpting/navigation/instagram.png?la=en&amp;hash=A9B372CBC588A3FC2EC64515DCD546DE23139B08" dataheight="0" src="../Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/instagram.png" alt="CoolSculpting-instagram" /></a>
+                    </li>
+                    <li>
+<a href="https://www.facebook.com/profile.php?id=305983096629825&amp;ref=br_rs" class="icon-s1" target="_blank" ="" ><img src="/../-/media/project/coolsculpting/navigation/fb.png?la=en&amp;hash=FD32A5C849C02E3708381E1E4878B7890F2CDC40" dataheight="0" src="../Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/fb.png" alt="CoolSculpting-fb" /></a>
+                    </li>
+                    <li>
+<a href="https://twitter.com/A_coolsculpting" class="icon-s1" target="_blank" ="" ><img src="/../-/media/project/coolsculpting/navigation/twitter.png?la=en&amp;hash=F09BDF30A407BDCC57E058DBC908E7894E37DE7E" dataheight="0" src="../Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/twitter.png" alt="CoolSculpting-twitter" /></a>
+                    </li>
+</ul>
+
+                                            <p class="info-text">This site is intended for India audience only.</p>
+<a href="#" data-toggle="modal" Class="country-change" role="button" onclick="dataLayer.push({'event': 'changeCountryClicked'});"  data-target="#cs-model" >Change Country                        <span class="sr-only">opens a dialog</span>
+</a>
+                            </div>
+                        </div>
+                        
+                                <div class="ism-footer-note col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 hidden-md hidden-lg footer-zinc info-extra">
+                    <div class="row">
+                            <p>INT/0087/2018h <br />Date of preparation April 2018</p>
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-sm-12 col-xs-12 footer-text info-extra">
+                </div>
+
+                <div class="col-md-2 hidden-sm hidden-xs footer-zinc info-extra">
+                        <p>INT/0087/2018h <br />Date of preparation April 2018</p>
+                </div>
+
+            </div>
+        </div>
+
+                    </div>
+                    
+                </div>
+
+            </footer>
+        </section>
+        <!--End: Footer Section-->
+        
+        
+    </div>
+
+
+
+    
+
+
+    <!-- Start PWA Section of Google Light house -->
+    
+    <!-- END PWA Section of Google Light house -->
+<input name="__RequestVerificationToken" type="hidden" value="LoLSoS1nMo-4BFb4sZ4rVcAllqvMb5HlOJew79CJLxTxytiDiMkvPAfuDNlBN9slYqy-a3ciIH20Cp45_DaciFdxq8jf53A9Klhx4mP9EOg1" />
+
+</body>
+
+
+</html>
